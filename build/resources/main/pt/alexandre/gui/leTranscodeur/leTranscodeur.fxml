@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="490.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.alexandre.gui.leTranscodeur.LeTranscodeurController">
+    <children>
+        <VBox prefHeight="490.0" prefWidth="638.0">
+            <children>
+                <VBox>
+                    <children>
+                        <VBox spacing="30.0">
+                            <children>
+                                <Label text="-&gt;LE&lt;- TRANSCODEUR" textFill="#b96c01">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="175.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <VBox spacing="35.0">
+                                    <children>
+                                        <HBox spacing="25.0">
+                                            <children>
+                                                <VBox spacing="48.0">
+                                                    <HBox.margin>
+                                                        <Insets top="30.0" />
+                                                    </HBox.margin>
+                                                </VBox>
+                                                <HBox fx:id="testonssa" spacing="25.0">
+                                                    <children>
+                                                        <ToggleButton fx:id="boutonVerrouillage" mnemonicParsing="false" onAction="#protegerClef" text="Verrouiller">
+                                                            <HBox.margin>
+                                                                <Insets top="150.0" />
+                                                            </HBox.margin>
+                                                        </ToggleButton>
+                                                        <VBox spacing="15.0">
+                                                            <children>
+                                                                <Label text="Message en clair">
+                                                                    <padding>
+                                                                        <Insets left="100.0" />
+                                                                    </padding>
+                                                                </Label>
+                                                                <TextField fx:id="txtClair" disable="true" prefHeight="57.0" prefWidth="276.0" />
+                                                                <Label text="Clef de codage">
+                                                                    <padding>
+                                                                        <Insets left="100.0" />
+                                                                    </padding>
+                                                                </Label>
+                                                                <TextField fx:id="txtClef" prefHeight="53.0" prefWidth="276.0" />
+                                                                <Label text="Message codé">
+                                                                    <padding>
+                                                                        <Insets left="100.0" />
+                                                                    </padding>
+                                                                </Label>
+                                                                <TextField fx:id="txtCode" disable="true" prefHeight="60.0" prefWidth="276.0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <Button fx:id="genClef" mnemonicParsing="false" onAction="#genererClef" text="Générer une clef de codage">
+                                                            <HBox.margin>
+                                                                <Insets top="150.0" />
+                                                            </HBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </HBox>
+                                        <Button mnemonicParsing="false" onAction="#viderChamps" text="vider les champs">
+                                            <VBox.margin>
+                                                <Insets left="190.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#sauverClef" text="Enregistrer la clef">
+                            <VBox.margin>
+                                <Insets left="400.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+        <Label fx:id="labelClefSauvee" prefHeight="17.0" prefWidth="364.0" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'groovy'
+}
+
+group 'pt.alexandre'
+version '1.12'
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+javafx {
+    version = "16"
+    modules = ["javafx.controls","javafx.fxml"]
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'mysql:mysql-connector-java:8.0.26'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = "pt.alexandre.App"

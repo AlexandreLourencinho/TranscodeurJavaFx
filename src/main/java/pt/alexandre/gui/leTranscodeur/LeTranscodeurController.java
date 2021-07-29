@@ -79,7 +79,7 @@ public class LeTranscodeurController
             {
                 msg.append(trans.encode(ligne)).append("\n");
             }
-            txtCode.setText(String.valueOf(msg));
+            txtCode.setText(msg.toString());
         }
 
     }

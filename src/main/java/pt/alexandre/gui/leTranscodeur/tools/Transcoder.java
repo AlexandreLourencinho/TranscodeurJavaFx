@@ -1,13 +1,11 @@
 package pt.alexandre.gui.leTranscodeur.tools;
 
 import org.apache.commons.lang3.StringUtils;
-import org.germain.tool.ManaBox;
 
 import java.util.HashMap;
 
 /**
  * Classe permettant de créer les tableaux de codage et décodage et contenant les méthodes de codage et de décodage
- * @see ManaBox
  * @see pt.alexandre.gui.leTranscodeur.LeTranscodeurController
  * @see GenClef
  * @see Constantes
@@ -33,7 +31,7 @@ public class Transcoder
 
         System.out.println(clef);
         // décryptage de la clef
-        String clearKey = ManaBox.decrypt(clef);
+        String clearKey = Manabox.decrypt(clef);
         System.out.println(clearKey);
         String debut = "AA";
 

@@ -3,8 +3,8 @@ package pt.alexandre.gui.leTranscodeur;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import org.germain.tool.ManaBox;
 import pt.alexandre.gui.leTranscodeur.tools.GenClef;
+import pt.alexandre.gui.leTranscodeur.tools.Manabox;
 import pt.alexandre.gui.leTranscodeur.tools.Transcoder;
 
 import java.io.IOException;
@@ -16,16 +16,16 @@ import java.nio.file.StandardOpenOption;
 /**
  * Classe permettant de gérer les différentes méthodes qui chiffrent / déchiffrent des messages (codés ou non, donc)
  * permet aussi la génération de clef de chiffrage
- *
- * @author Alexandre Lourencinho
  * @see Label
  * @see TextField
+ * @see TextArea
  * @see FXML
  * @see GenClef
  * @see GenClef#randomKey()
  * @see Transcoder
  * @see Files
  * @see Path
+ * @author Alexandre Lourencinho
  */
 public class LeTranscodeurController
 {
@@ -34,27 +34,22 @@ public class LeTranscodeurController
     public ToggleButton boutonVerrouillage;
     public HBox testonssa;
     @FXML
-    public TextArea txtClair;
+    private TextArea txtClair;
     @FXML
-    public TextArea txtCode;
-    public TextField txtClef;
+    private TextField txtClef;
+    @FXML
+    private TextArea txtCode;
 
     Transcoder trans;
 
     public void initialize()
     {
-        txtClair.textProperty().addListener(evt->encoderMessage());
+        txtClair.textProperty().addListener(evt -> encoderMessage());
 
-        txtCode.textProperty().addListener(evt->decoderMessage());
+        txtCode.textProperty().addListener(evt-> decoderMessage());
 
-
-        txtClef.textProperty().addListener(evt ->
-        {
-            trans = new Transcoder(txtClef.getText());
-            champsEditable();
-        });
+        txtClef.textProperty().addListener(evt ->{trans = new Transcoder(txtClef.getText());champsEditable();});
     }
-
     /**
      * méthode permettant l'appel de la génération de clef (via la classe éponyme)
      */
@@ -63,7 +58,7 @@ public class LeTranscodeurController
         GenClef gen = new GenClef();
         txtCode.clear();
         txtClair.clear();
-        txtClef.setText(ManaBox.encrypt(gen.randomKey()));
+        txtClef.setText(Manabox.encrypt(gen.randomKey()));
     }
 
     /**
@@ -102,12 +97,10 @@ public class LeTranscodeurController
 
     public void champsEditable()
     {
-        if (!txtClef.getText().equals(""))
-        {
+        if(!txtClef.getText().equals("")){
             txtCode.setDisable(false);
             txtClair.setDisable(false);
-        } else
-        {
+        }else{
             txtClair.setDisable(true);
             txtCode.setDisable(true);
         }
@@ -120,8 +113,7 @@ public class LeTranscodeurController
     {
         txtCode.clear();
         txtClair.clear();
-        if (!txtClef.isDisable())
-        {
+        if(!txtClef.isDisable()){
             txtClef.clear();
         }
 
@@ -129,14 +121,13 @@ public class LeTranscodeurController
 
     public void protegerClef()
     {
-        if (boutonVerrouillage.isSelected())
+        if(boutonVerrouillage.isSelected())
         {
             txtClef.setDisable(true);
             boutonVerrouillage.setStyle("-fx-background-color: limegreen; -fx-text-fill: black");
             testonssa.setSpacing(12);
             boutonVerrouillage.setText("Déverrouiller");
-        } else
-        {
+        }else{
             txtClef.setDisable(false);
             boutonVerrouillage.setStyle("-fx-background-color: darkred; -fx-text-fill: cyan");
             testonssa.setSpacing(25);
@@ -150,22 +141,24 @@ public class LeTranscodeurController
      */
     public void sauverClef()
     {
-        String dir = System.getProperty("user.dir");
-        int rand = (int) (100 * Math.random());
-        String fichier = "fichierclef" + rand + ".txt";
-        Path fich = Paths.get(dir, fichier);
+        String dir = System.getProperty("user.home","Desktop")+"\\Desktop";
+        System.out.println(dir);
+//        dir=dir+"\\Bureau";
+        System.out.println(dir);
+        int rand = (int) (100*Math.random());
+        String fichier = "fichierclef"+rand+".txt";
+        Path fich = Paths.get(dir,fichier);
         try
         {
-            Files.writeString(fich, txtClef.getText(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            labelClefSauvee.setText("Votre clef a été sauvegardée dans le fichier " + fichier);
+            Files.writeString(fich,txtClef.getText(), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+            labelClefSauvee.setText("Votre clef a été sauvegardée dans le fichier "+fichier);
         }
         catch (IOException e)
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("erreur enregistrement de clef");
-            alert.setContentText(
-                    "Attention ! : la clef ne s'est pas correctement enregistrée. Vérifiez les droits en écriture" +
-                            "ou contactez un administrateur.");
+            alert.setContentText("Attention ! : la clef ne s'est pas correctement enregistrée. Vérifiez les droits en" +
+                    " écriture ou contactez un administrateur.");
             alert.showAndWait();
         }
     }

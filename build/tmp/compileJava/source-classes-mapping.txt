@@ -1,10 +1,14 @@
+pt/alexandre/gui/leTranscodeur/tools/Manabox.java
+ pt.alexandre.gui.leTranscodeur.tools.Manabox
 pt/alexandre/gui/leTranscodeur/tools/GenClef.java
  pt.alexandre.gui.leTranscodeur.tools.GenClef
+pt/alexandre/Launcher.java
+ pt.alexandre.Launcher
 pt/alexandre/gui/leTranscodeur/tools/Constantes.java
  pt.alexandre.gui.leTranscodeur.tools.Constantes
-pt/alexandre/gui/leTranscodeur/tools/Transcoder.java
- pt.alexandre.gui.leTranscodeur.tools.Transcoder
 pt/alexandre/App.java
  pt.alexandre.App
+pt/alexandre/gui/leTranscodeur/tools/Transcoder.java
+ pt.alexandre.gui.leTranscodeur.tools.Transcoder
 pt/alexandre/gui/leTranscodeur/LeTranscodeurController.java
  pt.alexandre.gui.leTranscodeur.LeTranscodeurController
